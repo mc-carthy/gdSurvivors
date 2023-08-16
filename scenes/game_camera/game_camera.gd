@@ -1,6 +1,6 @@
 extends Camera2D
 
-const lerp_speed = 10
+const lerp_speed = 20
 
 
 var target_position = Vector2.ZERO

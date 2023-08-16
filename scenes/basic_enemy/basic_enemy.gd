@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 75
+const MAX_SPEED = 40
 
 func _ready() -> void:
 	$Area2D.area_entered.connect(on_area_entered)
