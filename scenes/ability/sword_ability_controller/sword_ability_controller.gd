@@ -5,6 +5,7 @@ const SWORD_SPAWN_OFFSET = 5
 
 @export var sword_ability: PackedScene
 
+var damage = 5
 
 func _ready() -> void:
 	$Timer.timeout.connect(on_timer_timeout)
@@ -34,8 +35,9 @@ func on_timer_timeout() -> void:
 	
 	var nearest_enemy = nearby_enemies[0] as Node2D
 	
-	var sword_instance = sword_ability.instantiate() as Node2D
+	var sword_instance = sword_ability.instantiate() as SwordAbility
 	player.get_parent().add_child(sword_instance)
+	sword_instance.hitbox_component.damage = damage
 	sword_instance.global_position = nearest_enemy.global_position
 	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * SWORD_SPAWN_OFFSET
 	

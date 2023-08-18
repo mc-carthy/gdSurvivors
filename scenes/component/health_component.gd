@@ -16,6 +16,6 @@ func damage(damage_amount: float) -> void:
 	Callable(check_death).call_deferred()
 
 func check_death() -> void:
-	if current_health < 0:
+	if current_health <= 0:
 		died.emit()
 		owner.queue_free()
