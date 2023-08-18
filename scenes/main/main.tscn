@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwvbyiof6120d"]
+[gd_scene load_steps=8 format=3 uid="uid://dwvbyiof6120d"]
 
 [ext_resource type="TileSet" uid="uid://2jbrfh3r2thu" path="res://resources/tile_set.tres" id="1_4o58v"]
-[ext_resource type="PackedScene" uid="uid://4lskaid70me0" path="res://scenes/player/player.tscn" id="1_phknl"]
+[ext_resource type="PackedScene" uid="uid://4lskaid70me0" path="res://scenes/game_object/player/player.tscn" id="1_phknl"]
 [ext_resource type="PackedScene" uid="uid://ryb7r7unj4fs" path="res://scenes/manager/arena_time_manager.tscn" id="2_5wkao"]
-[ext_resource type="PackedScene" uid="uid://cmh1uci56341q" path="res://scenes/game_camera/game_camera.tscn" id="3_7syb1"]
+[ext_resource type="PackedScene" uid="uid://cmh1uci56341q" path="res://scenes/game_object/game_camera/game_camera.tscn" id="3_7syb1"]
 [ext_resource type="PackedScene" uid="uid://o0ockpubllr1" path="res://scenes/manager/enemy_manager.tscn" id="5_4l807"]
 [ext_resource type="PackedScene" uid="uid://wrdqkjjyno70" path="res://scenes/ui/arena_time_ui.tscn" id="5_mgg55"]
+[ext_resource type="PackedScene" uid="uid://b0wggrplthksn" path="res://scenes/game_object/experience_vial/experience_vial.tscn" id="7_rakei"]
 
 [node name="Main" type="Node"]
 
@@ -25,3 +26,24 @@ layer_0/tile_data = PackedInt32Array(1441832, 0, 4, 1376296, 0, 4, 1310760, 6553
 
 [node name="Player" parent="." instance=ExtResource("1_phknl")]
 position = Vector2(473, 359)
+
+[node name="ExperienceVial" parent="." instance=ExtResource("7_rakei")]
+position = Vector2(428, 257)
+
+[node name="ExperienceVial2" parent="." instance=ExtResource("7_rakei")]
+position = Vector2(633, 234)
+
+[node name="ExperienceVial3" parent="." instance=ExtResource("7_rakei")]
+position = Vector2(622, 364)
+
+[node name="ExperienceVial4" parent="." instance=ExtResource("7_rakei")]
+position = Vector2(287, 352)
+
+[node name="ExperienceVial5" parent="." instance=ExtResource("7_rakei")]
+position = Vector2(289, 209)
+
+[node name="ExperienceVial6" parent="." instance=ExtResource("7_rakei")]
+position = Vector2(454, 136)
+
+[node name="ExperienceVial7" parent="." instance=ExtResource("7_rakei")]
+position = Vector2(454, 136)
