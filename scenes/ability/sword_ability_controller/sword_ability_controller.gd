@@ -40,7 +40,8 @@ func on_timer_timeout() -> void:
 	var nearest_enemy = nearby_enemies[0] as Node2D
 	
 	var sword_instance = sword_ability.instantiate() as SwordAbility
-	player.get_parent().add_child(sword_instance)
+	var foreground_layer = get_tree().get_first_node_in_group('foreground_layer')
+	foreground_layer.add_child(sword_instance)
 	sword_instance.hitbox_component.damage = damage
 	sword_instance.global_position = nearest_enemy.global_position
 	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * SWORD_SPAWN_OFFSET
