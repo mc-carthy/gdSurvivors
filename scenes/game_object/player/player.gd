@@ -46,12 +46,12 @@ func update_health_display() -> void:
 	health_bar.value = health_component.get_health_percent()
 
 
-func on_body_entered(other_body: Node2D) -> void:
+func on_body_entered(_other_body: Node2D) -> void:
 	number_colliding_bodies += 1
 	check_deal_damage()
 
 
-func on_body_exited(other_body: Node2D) -> void:
+func on_body_exited(_other_body: Node2D) -> void:
 	number_colliding_bodies -= 1
 	
 
