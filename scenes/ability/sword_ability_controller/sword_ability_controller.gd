@@ -54,4 +54,3 @@ func on_ability_upgrade_added(upgrade: AbilityUpgrade, currrent_upgrades: Dictio
 	var percent_reduction = currrent_upgrades[UPGRADE_ID]['quantity'] * 0.1
 	$Timer.wait_time = base_wait_time * (1 - percent_reduction)
 	$Timer.start()
-	print($Timer.wait_time)
