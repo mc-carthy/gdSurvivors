@@ -15,7 +15,7 @@ func _ready() -> void:
 	timer.timeout.connect(on_timer_timeout)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var next_time_target = timer.wait_time - (arena_difficulty + 1) * DIFFICULTY_INTERVAL
 	if timer.time_left <= next_time_target:
 		arena_difficulty += 1
