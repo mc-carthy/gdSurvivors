@@ -2,11 +2,13 @@ extends Node
 
 const MAX_RANGE = 150
 const SWORD_SPAWN_OFFSET = 5
-const UPGRADE_ID = 'sword_rate'
+const SWORD_RATE_UPGRADE_ID = 'sword_rate'
+const SWORD_DAMAGE_UPGRADE_ID = 'sword_damage'
 
 @export var sword_ability: PackedScene
 
-var damage = 5
+var base_damage = 5
+var additional_damage_percent = 1
 var base_wait_time: float
 
 func _ready() -> void:
@@ -42,7 +44,7 @@ func on_timer_timeout() -> void:
 	var sword_instance = sword_ability.instantiate() as SwordAbility
 	var foreground_layer = get_tree().get_first_node_in_group('foreground_layer')
 	foreground_layer.add_child(sword_instance)
-	sword_instance.hitbox_component.damage = damage
+	sword_instance.hitbox_component.damage = base_damage * additional_damage_percent
 	sword_instance.global_position = nearest_enemy.global_position
 	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * SWORD_SPAWN_OFFSET
 	
@@ -50,7 +52,9 @@ func on_timer_timeout() -> void:
 	sword_instance.rotation = enemy_direction.angle()
 
 func on_ability_upgrade_added(upgrade: AbilityUpgrade, currrent_upgrades: Dictionary) -> void:
-	if upgrade.id != UPGRADE_ID: return
-	var percent_reduction = currrent_upgrades[UPGRADE_ID]['quantity'] * 0.1
-	$Timer.wait_time = base_wait_time * (1 - percent_reduction)
-	$Timer.start()
+	if upgrade.id == SWORD_RATE_UPGRADE_ID:
+		var percent_reduction = currrent_upgrades[SWORD_RATE_UPGRADE_ID]['quantity'] * 0.1
+		$Timer.wait_time = base_wait_time * (1 - percent_reduction)
+		$Timer.start()
+	elif upgrade.id == SWORD_DAMAGE_UPGRADE_ID:
+		additional_damage_percent = 1 + (currrent_upgrades[SWORD_DAMAGE_UPGRADE_ID]['quantity'] * 0.15)

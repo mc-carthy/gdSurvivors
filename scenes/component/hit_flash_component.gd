@@ -5,6 +5,7 @@ const TWEEN_DURATION: float = 0.25
 @export var health_component: Node
 @export var sprite: Sprite2D
 @export var hit_flash_material: ShaderMaterial
+
 var hit_flash_tween: Tween
 
 func _ready() -> void:
