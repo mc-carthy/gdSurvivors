@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dixgrxtdt62ca"]
+[gd_scene load_steps=16 format=3 uid="uid://dixgrxtdt62ca"]
 
 [ext_resource type="Texture2D" uid="uid://dru1hocyocb3i" path="res://scenes/game_object/wizard_enemy/wizard_enemy.png" id="1_gt55l"]
 [ext_resource type="Script" path="res://scenes/game_object/wizard_enemy/wizard_enemy.gd" id="1_mqygc"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://f3xxu8ip8vca" path="res://scenes/component/death_component.tscn" id="2_w6epy"]
 [ext_resource type="PackedScene" uid="uid://bhgbv2ieefixj" path="res://scenes/component/hurtbox_component.tscn" id="3_0yiyp"]
 [ext_resource type="PackedScene" uid="uid://c8invh6ciqg1c" path="res://scenes/component/vial_drop_component.tscn" id="3_7uhtm"]
+[ext_resource type="PackedScene" uid="uid://c71lqx2kcs6wq" path="res://scenes/component/hit_flash_component.tscn" id="5_rpnn0"]
+[ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="6_fkfi5"]
 
 [sub_resource type="Animation" id="Animation_dh815"]
 length = 0.001
@@ -112,6 +114,11 @@ _data = {
 "walk": SubResource("Animation_0r04g")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_obvoq"]
+resource_local_to_scene = true
+shader = ExtResource("6_fkfi5")
+shader_parameter/lerp_percent = null
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1pna4"]
 radius = 8.0
 
@@ -139,6 +146,11 @@ health_component = NodePath("../HealthComponent")
 [node name="VelocityComponent" parent="." instance=ExtResource("2_gevkq")]
 max_speed = 60
 acceleration = 30.0
+
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_rpnn0")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_obvoq")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("2_w6epy")]
 health_component = NodePath("../HealthComponent")
