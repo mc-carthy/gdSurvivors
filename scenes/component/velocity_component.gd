@@ -17,6 +17,9 @@ func accelerate_to_player() -> void:
 	var direction = (player.global_position - owner_node2d.global_position).normalized()
 	accelerate_in_direction(direction)
 
+func decelerate() -> void:
+	accelerate_in_direction(Vector2.ZERO)
+
 
 func accelerate_in_direction(direction: Vector2) -> void:
 	var desired_velocity = direction * max_speed
