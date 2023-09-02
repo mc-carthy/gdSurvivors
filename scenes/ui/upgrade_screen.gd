@@ -23,5 +23,7 @@ func set_ability_upgrades(ability_upgrades: Array[AbilityUpgrade]) -> void:
 
 func on_upgrade_selected(upgrade: AbilityUpgrade) -> void:
 	upgrade_selected.emit(upgrade)
+	$AnimationPlayer.play('out')
+	await $AnimationPlayer.animation_finished
 	get_tree().paused = false
 	queue_free()
