@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://2h1ejheyfpex"]
+[gd_scene load_steps=17 format=3 uid="uid://2h1ejheyfpex"]
 
 [ext_resource type="Script" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_kk2hy"]
 [ext_resource type="PackedScene" uid="uid://cgc08ngtydcru" path="res://scenes/component/health_component.tscn" id="2_6mirq"]
@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bhgbv2ieefixj" path="res://scenes/component/hurtbox_component.tscn" id="4_lgagl"]
 [ext_resource type="PackedScene" uid="uid://f3xxu8ip8vca" path="res://scenes/component/death_component.tscn" id="4_weur6"]
 [ext_resource type="PackedScene" uid="uid://p0akbgvxlicc" path="res://scenes/component/velocity_component.tscn" id="4_ywt85"]
+[ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="6_ku24g"]
 [ext_resource type="PackedScene" uid="uid://c71lqx2kcs6wq" path="res://scenes/component/hit_flash_component.tscn" id="8_01tg4"]
+[ext_resource type="AudioStream" uid="uid://dyt1bafkp7ex6" path="res://assets/audio/footstep_carpet_000.ogg" id="10_ct8ey"]
 
 [sub_resource type="Animation" id="Animation_ha20i"]
 length = 0.001
@@ -71,6 +73,11 @@ _data = {
 "walk": SubResource("Animation_2eorb")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ndnf7"]
+resource_local_to_scene = true
+shader = ExtResource("6_ku24g")
+shader_parameter/lerp_percent = null
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_2brjl"]
 radius = 12.0
 
@@ -100,6 +107,7 @@ health_component = NodePath("../HealthComponent")
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("8_01tg4")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_ndnf7")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_weur6")]
 health_component = NodePath("../HealthComponent")
@@ -121,3 +129,8 @@ shape = SubResource("CircleShape2D_ncn8x")
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
 texture = ExtResource("2_e5req")
 offset = Vector2(2.08165e-12, -4)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ct8ey")
+max_distance = 300.0
+bus = &"SFX"

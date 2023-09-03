@@ -21,7 +21,7 @@ func _ready() -> void:
 	update_health_display()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var movement_vector: Vector2 = get_movement_vector()
 	var direction = movement_vector.normalized()
 	velocity_component.accelerate_in_direction(direction)
