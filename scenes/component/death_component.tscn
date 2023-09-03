@@ -1,6 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://f3xxu8ip8vca"]
+[gd_scene load_steps=14 format=3 uid="uid://f3xxu8ip8vca"]
 
 [ext_resource type="Script" path="res://scenes/component/death_component.gd" id="1_3rxh4"]
+[ext_resource type="PackedScene" uid="uid://dhdb5klvqhpjo" path="res://scenes/component/random_audio_stream_player_2d.tscn" id="2_h58j3"]
+[ext_resource type="AudioStream" uid="uid://dyt1bafkp7ex6" path="res://assets/audio/footstep_carpet_000.ogg" id="3_vj47r"]
+[ext_resource type="AudioStream" uid="uid://dlqdwa1bc1sn1" path="res://assets/audio/footstep_carpet_001.ogg" id="4_yl4p0"]
+[ext_resource type="AudioStream" uid="uid://bnsr4o6jrfkjn" path="res://assets/audio/footstep_carpet_002.ogg" id="5_24nq8"]
+[ext_resource type="AudioStream" uid="uid://nvmfqdoctq71" path="res://assets/audio/footstep_carpet_003.ogg" id="6_4ip4r"]
+[ext_resource type="AudioStream" uid="uid://eyox0afsbaiw" path="res://assets/audio/footstep_carpet_004.ogg" id="7_f2k2t"]
+
+[sub_resource type="Animation" id="Animation_sm8eq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_e18p0"]
 resource_name = "default"
@@ -29,21 +50,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"queue_free"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_sm8eq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xgnrf"]
@@ -88,3 +94,7 @@ lifetime = 0.5
 one_shot = true
 fixed_fps = 0
 interpolate = false
+
+[node name="HitAudioRandomStreamPlayer2D" parent="." instance=ExtResource("2_h58j3")]
+max_distance = 300.0
+stream_array = Array[AudioStream]([ExtResource("3_vj47r"), ExtResource("4_yl4p0"), ExtResource("5_24nq8"), ExtResource("6_4ip4r"), ExtResource("7_f2k2t")])
